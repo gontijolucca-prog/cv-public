@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Candidaturas · Lucca Gontijo</title>
+<style>
+:root {
+  --primary: #2878c8;
+  --primary-dark: #1e5fa8;
+  --green: #5d7a3a;
+  --orange: #c97a3a;
+  --red: #c84a3a;
+  --purple: #7c5dba;
+  --blue: #2563eb;
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-300: #d1d5db;
+  --gray-500: #6b7280;
+  --gray-700: #374151;
+  --gray-900: #111827;
+  --shadow-sm: 0 1px 2px 0 rgba(0,0,0,0.05);
+  --shadow: 0 1px 3px 0 rgba(0,0,0,0.1), 0 1px 2px 0 rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background: linear-gradient(135deg, #f0f4f8 0%, #e8eef4 100%);
+  color: var(--gray-900);
+  min-height: 100vh;
+  padding: 24px 20px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.container { max-width: 1320px; margin: 0 auto; }
+
+/* HEADER */
+.header {
+  background: white;
+  border-radius: 12px;
+  padding: 24px 28px;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.header-left { display: flex; align-items: center; gap: 16px; }
+.avatar {
+  width: 56px; height: 56px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  display: flex; align-items: center; justify-content: center;
+  color: white; font-weight: 700; font-size: 22px;
+  font-family: 'Times New Roman', serif;
+}
+.title { font-size: 22px; font-weight: 700; color: var(--gray-900); }
+.subtitle { font-size: 13px; color: var(--gray-500); margin-top: 2px; }
+
+.header-right { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: inherit;
+}
+.btn:hover { background: var(--primary-dark); transform: translateY(-1px); box-shadow: var(--shadow-md); }
+.btn-secondary { background: white; color: var(--gray-700); border: 1px solid var(--gray-200); }
+.btn-secondary:hover { background: var(--gray-50); border-color: var(--gray-300); }
+.btn-success { background: var(--green); }
+.btn-success:hover { background: #4a6a2d; }
+.btn-warn { background: var(--orange); }
+.btn-warn:hover { background: #a8632b; }
+
+/* TABS */
+.tabs {
+  display: flex;
+  gap: 4px;
+  background: white;
+  padding: 6px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow-sm);
+  border-bottom: 1px solid var(--gray-200);
+}
+.tab {
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--gray-500);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.15s;
+  font-size: 13px;
+}
+.tab:hover { background: var(--gray-50); color: var(--gray-700); }
+.tab.active { background: var(--primary); color: white; }
+.tab .badge {
+  background: rgba(255,255,255,0.25);
+  color: inherit;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 700;
+}
+.tab:not(.active) .badge { background: var(--gray-100); color: var(--gray-700); }
+
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+/* STATS */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.stat-card {
+  background: white;
+  border-radius: 10px;
+  padding: 16px 18px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--gray-200);
+  border-left: 4px solid var(--gray-300);
+  transition: all 0.15s;
+}
+.stat-card:hover { transform: translateY(-1px); box-shadow: var(--shadow); }
+.stat-card.s-total      { border-left-color: var(--gray-700); }
+.stat-card.s-draft      { border-left-color: var(--gray-500); }
+.stat-card.s-sent       { border-left-color: var(--primary); }
+.stat-card.s-viewed     { border-left-color: var(--purple); }
+.stat-card.s-interview  { border-left-color: var(--orange); }
+.stat-card.s-offer      { border-left-color: var(--green); }
+.stat-card.s-rejected   { border-left-color: var(--red); }
+.stat-card.s-potencial  { border-left-color: var(--blue); }
+.stat-card.s-novo       { border-left-color: var(--blue); }
+
+.stat-label { font-size: 10px; color: var(--gray-500); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
+.stat-value { font-size: 26px; font-weight: 700; color: var(--gray-900); margin-top: 4px; }
+.stat-sub { font-size: 11px; color: var(--gray-500); margin-top: 2px; }
+
+/* FILTERS */
+.filter-bar {
+  background: white;
+  border-radius: 10px;
+  padding: 14px 20px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.search-input {
+  flex: 1;
+  min-width: 200px;
+  padding: 8px 12px;
+  border: 1px solid var(--gray-200);
+  border-radius: 6px;
+  font-size: 13px;
+  font-family: inherit;
+}
+.search-input:focus { outline: none; border-color: var(--primary); }
+.filter-select {
+  padding: 8px 12px;
+  border: 1px solid var(--gray-200);
+  border-radius: 6px;
+  font-size: 13px;
+  background: white;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+/* TABLE */
+.table-container {
+  background: white;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+
+/* POTENTIALS — drop-down card layout */
+.pot-table { width: 100%; border-collapse: collapse; }
+.pot-row { background: white; border-bottom: 1px solid var(--gray-100); transition: background 0.1s; }
+.pot-row:hover { background: var(--gray-50); }
+.pot-row.expanded { background: #f0f9ff; }
+.pot-card { padding: 0; }
+
+.pot-header {
+  display: grid;
+  grid-template-columns: 24px 1fr auto auto;
+  gap: 14px;
+  align-items: center;
+  padding: 14px 18px;
+  cursor: pointer;
+  user-select: none;
+}
+.pot-chevron {
+  font-size: 16px;
+  color: var(--gray-500);
+  transition: transform 0.15s;
+  width: 18px;
+  text-align: center;
+}
+.pot-title {
+  font-weight: 600;
+  color: var(--gray-900);
+  font-size: 14px;
+  line-height: 1.35;
+}
+.pot-meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  font-size: 12px;
+  color: var(--gray-500);
+}
+.pot-date {
+  font-weight: 500;
+  white-space: nowrap;
+}
+.pot-date.fresh { color: var(--green); font-weight: 600; }
+.pot-date.week { color: var(--gray-700); }
+.pot-date.old { color: var(--gray-400); }
+.pot-dist {
+  white-space: nowrap;
+  font-weight: 500;
+  color: var(--primary);
+}
+.pot-dist strong { font-size: 13px; }
+.pot-dist small { color: var(--gray-500); font-size: 10px; }
+.pot-tags {
+  display: flex;
+  gap: 4px;
+}
+.pot-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.pot-details {
+  background: #f8fafc;
+  border-top: 1px solid var(--gray-200);
+  padding: 0 18px 18px 50px;
+  animation: slideDown 0.15s ease-out;
+}
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.pot-details-inner {
+  padding-top: 14px;
+  max-width: 900px;
+}
+.pot-section {
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--gray-200);
+}
+.pot-section:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+.pot-section-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--gray-500);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+.pot-section-content {
+  font-size: 13px;
+  color: var(--gray-700);
+  line-height: 1.55;
+  white-space: pre-wrap;
+}
+.pot-section-content a {
+  color: var(--primary);
+  text-decoration: none;
+  word-break: break-all;
+}
+.pot-section-content a:hover { text-decoration: underline; }
+
+.pot-actions-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--gray-200);
+}
+
+.reveal-btn {
+  background: #dbeafe;
+  color: #1e3a8a;
+  border: 1px solid #93c5fd;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+  font-family: inherit;
+}
+.reveal-btn:hover { background: #bfdbfe; }
+
+@media (max-width: 900px) {
+  .pot-header {
+    grid-template-columns: 24px 1fr;
+  }
+  .pot-meta {
+    grid-column: 2 / -1;
+    flex-wrap: wrap;
+  }
+  .pot-actions {
+    grid-column: 2 / -1;
+    justify-content: flex-end;
+    margin-top: 6px;
+  }
+  .pot-details { padding-left: 18px; }
+}
+.table-header {
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--gray-200);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.table-title { font-size: 15px; font-weight: 700; color: var(--gray-900); }
+
+table { width: 100%; border-collapse: collapse; }
+th {
+  text-align: left;
+  padding: 10px 14px;
+  background: var(--gray-50);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--gray-500);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid var(--gray-200);
+}
+td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--gray-100);
+  font-size: 13px;
+  vertical-align: middle;
+}
+tr:hover td { background: var(--gray-50); }
+tr:last-child td { border-bottom: none; }
+
+.title-cell { font-weight: 600; color: var(--gray-900); }
+.title-cell small { font-weight: 400; color: var(--gray-500); display: block; margin-top: 2px; font-size: 11px; }
+.cat-cell { font-size: 11px; color: var(--gray-500); }
+.cat-tag { display: inline-block; padding: 2px 6px; border-radius: 3px; margin-right: 3px; margin-bottom: 2px; font-weight: 600; }
+.cat-tag.c-restauracao { background: #fff7ed; color: #c2410c; }
+.cat-tag.c-industrial { background: #ecfdf5; color: #047857; }
+.cat-tag.c-audiovisual { background: #eff6ff; color: #1e40af; }
+.cat-tag.c-geral { background: #f3f4f6; color: #4b5563; }
+.cat-tag.c-outros { background: #fafafa; color: #6b7280; }
+
+.date-cell { font-size: 11px; color: var(--gray-500); white-space: nowrap; }
+.date-cell.fresh { color: var(--green); font-weight: 600; }
+.dist-cell { font-size: 12px; color: var(--gray-700); white-space: nowrap; }
+.dist-cell strong { color: var(--primary); font-size: 13px; }
+.dist-cell small { color: var(--gray-500); font-size: 10px; }
+.date-cell.week { color: var(--gray-700); }
+.date-cell.old { color: var(--gray-400); }
+
+.link-cell a {
+  color: var(--primary);
+  text-decoration: none;
+  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.link-cell a:hover { text-decoration: underline; }
+.contact-cell { font-size: 11px; color: var(--gray-700); }
+.contact-cell.revealed { color: var(--green); font-weight: 600; }
+
+.notes-cell {
+  font-size: 11px;
+  color: var(--gray-500);
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* STATUS */
+.status {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+.status-rascunho    { background: #f3f4f6; color: #4b5563; }
+.status-enviado     { background: #dbeafe; color: #1e40af; }
+.status-visualizado { background: #ede9fe; color: #6d28d9; }
+.status-entrevista  { background: #fed7aa; color: #9a3412; }
+.status-oferta      { background: #d1fae5; color: #065f46; }
+.status-recusado    { background: #fee2e2; color: #991b1b; }
+.status-fechado     { background: #e5e7eb; color: #374151; }
+.status-potencial   { background: #dbeafe; color: #1e3a8a; }
+
+/* CV BADGE */
+.cv-badge {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+.cv-av { background: #dbeafe; color: #1e3a8a; }
+.cv-geral { background: #d1fae5; color: #065f46; }
+
+/* ACTIONS */
+.actions { display: flex; gap: 6px; }
+.icon-btn {
+  background: transparent;
+  border: 1px solid var(--gray-200);
+  width: 28px; height: 28px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  transition: all 0.15s;
+}
+.icon-btn:hover { background: var(--gray-100); border-color: var(--gray-300); }
+.icon-btn-danger:hover { background: #fee2e2; border-color: #fca5a5; color: #991b1b; }
+.icon-btn-success:hover { background: #d1fae5; border-color: #86efac; color: #065f46; }
+
+/* MODAL */
+.modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(2px);
+}
+.modal-overlay.active { display: flex; }
+.modal {
+  background: white;
+  border-radius: 12px;
+  width: 90%; max-width: 620px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+}
+.modal-header {
+  padding: 18px 22px;
+  border-bottom: 1px solid var(--gray-200);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.modal-title { font-size: 17px; font-weight: 700; }
+.modal-body { padding: 20px 22px; }
+.modal-footer {
+  padding: 14px 22px;
+  border-top: 1px solid var(--gray-200);
+  display: flex; gap: 8px; justify-content: flex-end;
+}
+.form-group { margin-bottom: 14px; }
+.form-label { display: block; font-size: 12px; font-weight: 600; color: var(--gray-700); margin-bottom: 5px; }
+.form-input, .form-select, .form-textarea {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid var(--gray-200);
+  border-radius: 6px;
+  font-size: 13px;
+  font-family: inherit;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus { outline: none; border-color: var(--primary); }
+.form-textarea { min-height: 70px; resize: vertical; font-family: 'SF Mono', Menlo, monospace; font-size: 12px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+/* EMPTY */
+.empty-state {
+  padding: 50px 24px;
+  text-align: center;
+  color: var(--gray-500);
+}
+.empty-state-icon { font-size: 48px; margin-bottom: 12px; opacity: 0.4; }
+.empty-state-title { font-size: 16px; font-weight: 600; color: var(--gray-700); margin-bottom: 4px; }
+.empty-state-text { font-size: 13px; }
+
+/* FOOTER */
+.footer {
+  text-align: center;
+  font-size: 11px;
+  color: var(--gray-500);
+  margin-top: 16px;
+}
+
+@media (max-width: 768px) {
+  .form-row { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<script>window.__EMBEDDED_DATA__ = {"candidates": [{"id": "1749211200001", "company": "TOPECA", "role": "Administrativo(a) de Expediente", "location": "Ourém – Fátima – Leiria (zona)", "cvUsed": "geral", "status": "rascunho", "sentDate": null, "link": "https://www.net-empregos.com/15734033/1-vaga-administrativo-expediente/", "contact": "geral@topeca.pt", "notes": "26-07-2026 · Ref 15734033 · Santarém · Salário evolutivo acima da média. Categoria: Administração/Secretariado. Pedem administrativo(a) de expediente — área onde tenho experiência (iStore Worten assistente administrativo, 6 meses).", "messageDraft": "Exmo(a) Sr(a),\n\nVenho por este meio candidatar-me à vaga de Administrativo(a) de Expediente publicada no Net-Empregos (Ref. 15734033).\n\nTenho experiência em funções administrativas e atendimento ao público, adquirida em posições anteriores no sector do comércio e serviços, e disponibilidade imediata para a zona de Ourém–Fátima–Leiria. Sou assíduo, pontual e confortável com rotinas de expediente, arquivo e contacto com clientes em português e inglês.\n\nJunto envio o meu currículo para apreciação.\nAgradeço desde já a atenção e fico ao dispor para uma entrevista.\n\nCom os melhores cumprimentos,\nLucca Rodrigues Gontijo\n+351 915 136 439 · gontijolucca@gmail.com", "createdAt": "2026-08-06T12:50:00.000Z", "updatedAt": "2026-08-06T12:50:00.000Z"}, {"id": "1749211200002", "company": "I Love Beer, Lda", "role": "Empregada de Mesa/Bar", "location": "Fátima", "cvUsed": "geral", "status": "rascunho", "sentDate": null, "link": "https://www.net-empregos.com/15791436/empregada-de-mesa-bar-i-love-beer-fatima/", "contact": "ilovebeer.original@gmail.com", "notes": "05-08-2026 · Ref 15791436 · Leiria · Regime 40h ou Part-Time. Restauração/Bares. \n[Aviso: a oferta pede 'Colaborador(a)' — eu sou homem. Vale a pena candidatar-me? As descrições geralmente aceitam M/F]", "messageDraft": "Exmo(a) Sr(a),\n\nVenho por este meio candidatar-me à vaga de Empregado(a) de Mesa/Bar no I Love Beer Fátima (Ref. 15791436).\n\nTenho experiência recente em atendimento ao público e serviço de mesa, adquirida em funções de receção noturna no Hotel Casa São Nuno (Fátima) — onde lidei directamente com clientes em português e inglês. Sou pontual, dinâmico, simpático e tenho disponibilidade imediata, tanto para regime de tempo inteiro como Part-Time.\n\nJunto envio o meu currículo e fico ao dispor para uma entrevista presencial.\n\nCom os melhores cumprimentos,\nLucca Rodrigues Gontijo\n+351 915 136 439 · gontijolucca@gmail.com", "createdAt": "2026-08-06T12:50:00.000Z", "updatedAt": "2026-08-06T12:50:00.000Z"}, {"id": "1749211200003", "company": "Essência 360 (Consultoria)", "role": "Colaborador(a) de Loja de Artigos Religiosos", "location": "Fátima (Part-Time)", "cvUsed": "geral", "status": "rascunho", "sentDate": null, "link": "https://www.net-empregos.com/15639126/colaboradora-para-loja-de-artigos-religiosos-full-time-e-part-time-entrada-imediata/", "contact": "geral@essencia360.pt", "notes": "06-08-2026 · Ref 15639126 · Santarém · Lojas/Comércio/Balcão. Entrada imediata. Pedem Part-Time. 12º ano + experiência atendimento. NOTA: cabe perfeitamente no perfil — vende artigos religiosos em Fátima onde vivi (conheço bem a zona e o público).", "messageDraft": "Exmo(a) Sr(a),\n\nVenho por este meio candidatar-me à vaga de Colaborador(a) de Loja para a loja de artigos religiosos em Fátima (Ref. 15639126).\n\nSou residente em Fátima, tenho experiência em atendimento ao público e venda em lojas (Worten e iStore LeiriaShopping), sou fluente em inglês e tenho disponibilidade imediata em regime Part-Time. Conheço bem o público da zona e tenho interesse genuíno em trabalhar no sector de artigos religiosos.\n\nJunto envio o meu currículo e fico ao dispor para uma entrevista.\n\nCom os melhores cumprimentos,\nLucca Rodrigues Gontijo\n+351 915 136 439 · gontijolucca@gmail.com", "createdAt": "2026-08-06T12:50:00.000Z", "updatedAt": "2026-08-06T12:50:00.000Z"}, {"id": "1749211200004", "company": "Fátivil", "role": "Ajudante de Serralharia (Oficina) com evolução para Operador CNC", "location": "Fátima (Full-Time)", "cvUsed": "geral", "status": "rascunho", "sentDate": null, "link": "https://www.net-empregos.com/15702162/ajudante-de-serralharia-oficina-evolucao-para-operador-cnc-m-f-full-time-fatima/", "contact": "ana@fativil.pt", "notes": "25-07-2026 · Ref 15702162 · Santarém · Indústria/Produção. FULL-TIME. \n*** ESTA É A MELHOR ENCAIXE NO MEU CV *** — já trabalhei exactamente em serralharia (BLOCOTELHA) + CNC em Fátima. MENCIONAR explicitamente.", "messageDraft": "Exmo(a) Sr(a),\n\nVenho por este meio candidatar-me à vaga de Ajudante de Serralharia (Oficina) com evolução para Operador CNC na Fátivil, em Fátima (Ref. 15702162).\n\nTenho experiência directa e recente na função: trabalhei 5 meses na BLOCOTELHA, Fátima (Set 2025 – Jan 2026), onde operei máquinas de corte de alumínio (CNC e Duas Cabeças) e trabalhei como ajudante de serralheiro — exactamente o mesmo tipo de trabalho que descrevem. A operação sair da empresa coincidiu com questões contratuais, não com desempenho, e tenho disponibilidade imediata para Full-Time.\n\nEsta vaga interessa-me particularmente pela progressão para CNC — é exactamente a área onde já tenho prática e onde quero continuar a evoluir.\n\nJunto envio o meu currículo. Fico ao dispor para uma entrevista em Fátima.\n\nCom os melhores cumprimentos,\nLucca Rodrigues Gontijo\n+351 915 136 439 · gontijolucca@gmail.com", "createdAt": "2026-08-06T12:50:00.000Z", "updatedAt": "2026-08-06T12:50:00.000Z"}, {"id": "1749211200005", "company": "Verdasca Group", "role": "Operador de Produção / Servente", "location": "Fátima", "cvUsed": "geral", "status": "rascunho", "sentDate": null, "link": "https://www.net-empregos.com/15645994/operador-producao-e-serventes-fatima/", "contact": "candidaturas@grupoverdasca.com", "notes": "⚠ Link não abriu no browser (timeout). O site Net-Empregos às vezes bloqueia. Categoria: Indústria/Produção. Encaixa claramente no meu perfil (BLOCOTELHA CNC + serralheiro).", "messageDraft": "Exmo(a) Sr(a),\n\nVenho por este meio candidatar-me à vaga de Operador de Produção / Servente em Fátima (Ref. 15645994).\n\nTenho experiência recente em indústria e produção (BLOCOTELHA — máquinas CNC Duas Cabeças e apoio de serralheiro, Set 2025 – Jan 2026) e sou pontual, resistente ao trabalho físico e tenho disponibilidade imediata em Fátima.\n\nJunto envio o meu currículo e fico ao dispor para uma entrevista.\n\nCom os melhores cumprimentos,\nLucca Rodrigues Gontijo\n+351 915 136 439 · gontijolucca@gmail.com", "createdAt": "2026-08-06T12:50:00.000Z", "updatedAt": "2026-08-06T12:50:00.000Z"}], "potentials": [{"ref": "15809955", "title": "Ajudante de Cozinha (M/F) - Monte Real", "url": "https://www.net-empregos.com/15809955/ajudante-de-cozinha-m-f-monte-real/", "date": "5-8-2026", "category": "Hotelaria PT Leiria", "nearest_city": "Leiria", "distance_km": 18.9}, {"ref": "15809904", "title": "Jardineiro (M/F) - Monte Redondo, Leiria", "url": "https://www.net-empregos.com/15809904/jardineiro-m-f-monte-redondo-leiria/", "date": "5-8-2026", "category": "Hotelaria PT Leiria", "nearest_city": "Leiria", "distance_km": 18.9}, {"ref": "15809905", "title": "Jardineiro (M/F) - Monte Redondo, Leiria", "url": "https://www.net-empregos.com/15809905/jardineiro-m-f-monte-redondo-leiria/", "date": "5-8-2026", "category": "Hotelaria PT Leiria", "nearest_city": "Leiria", "distance_km": 18.9}, {"ref": "15809903", "title": "Empregado de Balcão (M/F) - Óbidos", "url": "https://www.net-empregos.com/15809903/empregado-de-balcao-m-f-obidos/", "date": "5-8-2026", "category": "Hotelaria PT Leiria", "nearest_city": "Leiria", "distance_km": 18.9}, {"ref": "15809909", "title": "Pasteleiro de 1ª (M/F) - Leiria", "url": "https://www.net-empregos.com/15809909/pasteleiro-de-1-m-f-leiria/", "date": "5-8-2026", "category": "Hotelaria PT Leiria", "nearest_city": "Leiria", "distance_km": 18.9}, {"ref": "15809910", "title": "Cozinheiro de 1ª (M/F) - Leiria", "url": "https://www.net-empregos.com/15809910/cozinheiro-de-1-m-f-leiria/", "date": "5-8-2026", "category": "Hotelaria PT Leiria", "nearest_city": "Leiria", "distance_km": 18.9}, {"ref": "15809943", "title": "Rececionista (M/F) - Leiria", "url": "https://www.net-empregos.com/15809943/rececionista-m-f-leiria/", "date": "5-8-2026", "category": "Hotelaria PT Leiria", "nearest_city": "Leiria", "distance_km": 18.9}, {"ref": "15809878", "title": "Empregado de Pisos (M/F) - Leiria", "url": "https://www.net-empregos.com/15809878/empregado-de-pisos-m-f-leiria/", "date": "5-8-2026", "category": "Hotelaria PT Leiria", "nearest_city": "Leiria", "distance_km": 18.9}, {"ref": "15809944", "title": "Técnico de Manutenção (M/F) - Leiria", "url": "https://www.net-empregos.com/15809944/tecnico-de-manutencao-m-f-leiria/", "date": "5-8-2026", "category": "Hotelaria PT Leiria", "nearest_city": "Leiria", "distance_km": 18.9}, {"ref": "15809846", "title": "Empregado de Pisos (M/F) - Leiria", "url": "https://www.net-empregos.com/15809846/empregado-de-pisos-m-f-leiria/", "date": "5-8-2026", "category": "Hotelaria PT Leiria", "nearest_city": "Leiria", "distance_km": 18.9}, {"ref": "15809941", "title": "Copeiro (M/F) - Leiria", "url": "https://www.net-empregos.com/15809941/copeiro-m-f-leiria/", "date": "5-8-2026", "category": "Hotelaria PT Leiria", "nearest_city": "Leiria", "distance_km": 18.9}, {"ref": "15809940", "title": "Empregado de Pisos (M/F) - Leiria", "url": "https://www.net-empregos.com/15809940/empregado-de-pisos-m-f-leiria/", "date": "5-8-2026", "category": "Hotelaria PT Leiria", "nearest_city": "Leiria", "distance_km": 18.9}, {"ref": "15809862", "title": "Empregado de Pisos (M/F) - Leiria", "url": "https://www.net-empregos.com/15809862/empregado-de-pisos-m-f-leiria/", "date": "5-8-2026", "category": "Hotelaria PT Leiria", "nearest_city": "Leiria", "distance_km": 18.9}, {"ref": "15809942", "title": "Empregado de Mesa 2ª (M/F) - Leiria", "url": "https://www.net-empregos.com/15809942/empregado-de-mesa-2-m-f-leiria/", "date": "5-8-2026", "category": "Hotelaria PT Leiria", "nearest_city": "Leiria", "distance_km": 18.9}, {"ref": "15796638", "title": "Empregada de Balcão e Mesa (Part-Time 20h) – O Único (Amor, Leiria)", "url": "https://www.net-empregos.com/15796638/empregada-de-balcao-e-mesa-part-time-20h-o-unico-amor-leiria/", "date": "6-8-2026", "category": "Restauracao PT Leiria", "nearest_city": "Leiria", "distance_km": 18.9}, {"ref": "15812885", "title": "Empregada para café/restaurante em Vieira de Leiria (30 horas semanais)", "url": "https://www.net-empregos.com/15812885/empregada-para-cafe-restaurante-em-vieira-de-leiria-30-horas-semanais/", "date": "6-8-2026", "category": "Restauracao PT Leiria", "nearest_city": "Leiria", "distance_km": 18.9}, {"ref": "15791669", "title": "RECRUTAMENTO – DJs E BANDAS", "url": "https://www.net-empregos.com/15791669/recrutamento-djs-e-bandas/", "date": "6-8-2026", "category": "Restauracao PT Leiria", "nearest_city": "Leiria", "distance_km": 18.9}, {"ref": "15753783", "title": "Empregado/a de Mesa - Part-time - Foz do Arelho", "url": "https://www.net-empregos.com/15753783/empregado-a-de-mesa-part-time-foz-do-arelho/", "date": "6-8-2026", "category": "Restauracao PT Leiria", "nearest_city": "Leiria", "distance_km": 18.9}, {"ref": "15820610", "title": "Vitaminas - Balcão (M/F) - Part Time - Leiria Shopping", "url": "https://www.net-empregos.com/15820610/vitaminas-balc-227-o-m-f-part-time-leiria-shopping/", "date": "6-8-2026", "category": "Restauracao PT Leiria", "nearest_city": "Leiria", "distance_km": 18.9}, {"ref": "15792022", "title": "EMPREGADO(A) DE REFEITÓRIO - Arrabal", "url": "https://www.net-empregos.com/15792022/empregado-a-de-refeitorio-arrabal/", "date": "6-8-2026", "category": "Restauracao PT Leiria", "nearest_city": "Leiria", "distance_km": 18.9}, {"ref": "15819366", "title": "Cozinheiro/a", "url": "https://www.net-empregos.com/15819366/cozinheiro-a/", "date": "6-8-2026", "category": "Restauracao PT Leiria", "nearest_city": "Leiria", "distance_km": 18.9}, {"ref": "15133262", "title": "Empregado de mesa (m/f) - part time - Leiria", "url": "https://www.net-empregos.com/15133262/empregado-de-mesa-m-f-part-time-leiria/", "date": "5-8-2026", "category": "Restauracao PT Leiria", "nearest_city": "Leiria", "distance_km": 18.9}, {"ref": "15789472", "title": "Empregado/a de mesa restaurante pequenos-almoços - part time", "url": "https://www.net-empregos.com/15789472/empregado-a-de-mesa-restaurante-pequenos-almocos-part-time/", "date": "3-8-2026", "category": "Restauracao PT Leiria", "nearest_city": "Leiria", "distance_km": 18.9}, {"ref": "15799439", "title": "LEIRIA – Estamos a recrutar Empregado(a) de Mesa (Part-Time)", "url": "https://www.net-empregos.com/15799439/leiria-estamos-a-recrutar-empregado-a-de-mesa-part-time/", "date": "3-8-2026", "category": "Restauracao PT Leiria", "nearest_city": "Leiria", "distance_km": 18.9}, {"ref": "15398280", "title": "Colaboradores h3 Caldas Da Rainha", "url": "https://www.net-empregos.com/15398280/colaboradores-h3-caldas-da-rainha/", "date": "3-8-2026", "category": "Restauracao PT Leiria", "nearest_city": "Leiria", "distance_km": 18.9}, {"ref": "15807352", "title": "Operador(a) Part-Time | BK Fátima", "url": "https://www.net-empregos.com/15807352/operador-a-part-time-bk-fatima/", "date": "4-8-2026", "category": "Restauracao PT Santarem", "nearest_city": "Fátima", "distance_km": 0.0}, {"ref": "15807344", "title": "Operador(a) Part-Time Verão | BK Fátima", "url": "https://www.net-empregos.com/15807344/operador-a-part-time-verao-bk-fatima/", "date": "4-8-2026", "category": "Restauracao PT Santarem", "nearest_city": "Fátima", "distance_km": 0.0}, {"ref": "15737655", "title": "Ajudante de Cozinha (M/F) - Ourém", "url": "https://www.net-empregos.com/15737655/ajudante-de-cozinha-m-f-ourem/", "date": "1-8-2026", "category": "Restauracao PT Santarem", "nearest_city": "Ourém", "distance_km": 6.0}, {"ref": "15694137", "title": "Empregado de mesa (m/f)", "url": "https://www.net-empregos.com/15694137/empregado-de-mesa-m-f/", "date": "26-7-2026", "category": "Restauracao PT Santarem", "nearest_city": "desconhecido", "distance_km": null}, {"ref": "15665392", "title": "Precisa-se Empregada/o de Balcão para Alburitel/Ourém", "url": "https://www.net-empregos.com/15665392/precisa-se-empregada-o-de-balcao-para-alburitel-ourem/", "date": "21-7-2026", "category": "Restauracao PT Santarem", "nearest_city": "Ourém", "distance_km": 6.0}, {"ref": "15644302", "title": "Empregada de Mesa/ balcão", "url": "https://www.net-empregos.com/15644302/empregada-de-mesa-balcao/", "date": "16-7-2026", "category": "Restauracao PT Santarem", "nearest_city": "desconhecido", "distance_km": null}, {"ref": "15517750", "title": "Empregado(a) de Mesa – Part-Time (Sexta, Sábado e Domingo)", "url": "https://www.net-empregos.com/15517750/empregado-a-de-mesa-part-time-sexta-sabado-e-domingo/", "date": "15-7-2026", "category": "Restauracao PT Santarem", "nearest_city": "desconhecido", "distance_km": null}, {"ref": "15818707", "title": "Operador(a) de Produção / Design Gráfico (Photoshop)", "url": "https://www.net-empregos.com/15818707/operador-a-de-producao-design-grafico-photoshop/", "date": "6-8-2026", "category": "Industria FT Leiria", "nearest_city": "Leiria", "distance_km": 18.9}, {"ref": "15807270", "title": "Técnico/operador de Injeção (m/f)", "url": "https://www.net-empregos.com/15807270/tecnico-operador-de-injecao-m-f/", "date": "6-8-2026", "category": "Industria FT Leiria", "nearest_city": "Leiria", "distance_km": 18.9}, {"ref": "15589655", "title": "Portugal - Montador / Mecânico de Estruturas Metálicas", "url": "https://www.net-empregos.com/15589655/portugal-montador-mecanico-de-estruturas-metalicas/", "date": "6-8-2026", "category": "Industria FT Leiria", "nearest_city": "Leiria", "distance_km": 18.9}, {"ref": "15780936", "title": "Operador Produção Óbidos", "url": "https://www.net-empregos.com/15780936/operador-producao-obidos/", "date": "6-8-2026", "category": "Industria FT Leiria", "nearest_city": "Leiria", "distance_km": 18.9}, {"ref": "15201716", "title": "Operador de Extração - Fátima", "url": "https://www.net-empregos.com/15201716/operador-de-extracao-fatima/", "date": "6-8-2026", "category": "Industria FT Leiria", "nearest_city": "Fátima", "distance_km": 0.0}, {"ref": "15791440", "title": "Auxiliar de Produção - Cartonagem (M/F)", "url": "https://www.net-empregos.com/15791440/auxiliar-de-producao-cartonagem-m-f/", "date": "6-8-2026", "category": "Industria FT Leiria", "nearest_city": "Leiria", "distance_km": 18.9}, {"ref": "15790606", "title": "Limpeza - Gaeiras, Óbidos", "url": "https://www.net-empregos.com/15790606/limpeza-gaeiras-obidos/", "date": "6-8-2026", "category": "Industria FT Leiria", "nearest_city": "Leiria", "distance_km": 18.9}, {"ref": "15768461", "title": "Técnico Maquinação CNC (Operador ou Programador / Operador)", "url": "https://www.net-empregos.com/15768461/tecnico-maquinacao-cnc-operador-ou-programador-operador/", "date": "6-8-2026", "category": "Industria FT Leiria", "nearest_city": "Leiria", "distance_km": 18.9}, {"ref": "15753599", "title": "Técnico de Manutenção Industrial", "url": "https://www.net-empregos.com/15753599/tecnico-de-manutencao-industrial/", "date": "6-8-2026", "category": "Industria FT Leiria", "nearest_city": "Leiria", "distance_km": 18.9}, {"ref": "15786573", "title": "Estamos a Recrutar: Técnicos de Tratamento de Superfícies", "url": "https://www.net-empregos.com/15786573/estamos-a-recrutar-tecnicos-de-tratamento-de-superficies/", "date": "6-8-2026", "category": "Industria FT Leiria", "nearest_city": "Leiria", "distance_km": 18.9}, {"ref": "15781724", "title": "Serralheiro Civil e de Bancada", "url": "https://www.net-empregos.com/15781724/serralheiro-civil-e-de-bancada/", "date": "6-8-2026", "category": "Industria FT Leiria", "nearest_city": "Leiria", "distance_km": 18.9}, {"ref": "15814965", "title": "Serralheiro", "url": "https://www.net-empregos.com/15814965/serralheiro/", "date": "6-8-2026", "category": "Industria FT Leiria", "nearest_city": "Leiria", "distance_km": 18.9}, {"ref": "15812063", "title": "Ajudante Serralheiro", "url": "https://www.net-empregos.com/15812063/ajudante-serralheiro/", "date": "6-8-2026", "category": "Industria FT Leiria", "nearest_city": "Leiria", "distance_km": 18.9}, {"ref": "15507730", "title": "Empregada(o) de Limpeza", "url": "https://www.net-empregos.com/15507730/empregada-o-de-limpeza/", "date": "6-8-2026", "category": "Industria FT Leiria", "nearest_city": "Leiria", "distance_km": 18.9}, {"ref": "15792490", "title": "Ajudante de Serralheiro/Soldador (M/F)", "url": "https://www.net-empregos.com/15792490/ajudante-de-serralheiro-soldador-m-f/", "date": "6-8-2026", "category": "Industria FT Leiria", "nearest_city": "Leiria", "distance_km": 18.9}, {"ref": "15690162", "title": "Aprendiz de Técnico de Oficina – Máquinas de Construção (M/F)", "url": "https://www.net-empregos.com/15690162/aprendiz-de-tecnico-de-oficina-maquinas-de-construcao-m-f/", "date": "6-8-2026", "category": "Industria FT Leiria", "nearest_city": "Leiria", "distance_km": 18.9}, {"ref": "15703030", "title": "Encarregado/Operador de Operação de Plataforma de Compostagem (M/F) - Chamusca", "url": "https://www.net-empregos.com/15703030/encarregado-operador-de-operacao-de-plataforma-de-compostagem-m-f-chamusca/", "date": "6-8-2026", "category": "Industria FT Santarem", "nearest_city": "desconhecido", "distance_km": null}, {"ref": "15780310", "title": "Operador de Máquina de Crote CNC", "url": "https://www.net-empregos.com/15780310/operador-de-maquina-de-crote-cnc/", "date": "6-8-2026", "category": "Industria FT Santarem", "nearest_city": "desconhecido", "distance_km": null}, {"ref": "15815032", "title": "Serralheiro Industrial INOX", "url": "https://www.net-empregos.com/15815032/serralheiro-industrial-inox/", "date": "6-8-2026", "category": "Industria FT Santarem", "nearest_city": "desconhecido", "distance_km": null}, {"ref": "15662578", "title": "Ajudante para serralharia e montagens", "url": "https://www.net-empregos.com/15662578/ajudante-para-serralharia-e-montagens/", "date": "6-8-2026", "category": "Industria FT Santarem", "nearest_city": "desconhecido", "distance_km": null}, {"ref": "15783652", "title": "Operador - Centro de Classificação de Ovos - Oferta #1", "url": "https://www.net-empregos.com/15783652/operador-centro-de-classificacao-de-ovos-oferta-1/", "date": "6-8-2026", "category": "Industria FT Santarem", "nearest_city": "desconhecido", "distance_km": null}, {"ref": "15780419", "title": "TPM Specialist (M/F)", "url": "https://www.net-empregos.com/15780419/tpm-specialist-m-f/", "date": "6-8-2026", "category": "Industria FT Santarem", "nearest_city": "desconhecido", "distance_km": null}, {"ref": "15810529", "title": "Setor mobiliário - Auxiliar de serviços", "url": "https://www.net-empregos.com/15810529/setor-mobiliario-auxiliar-de-servicos/", "date": "6-8-2026", "category": "Industria FT Santarem", "nearest_city": "desconhecido", "distance_km": null}, {"ref": "15809222", "title": "Ajudante de Serralheiro - Samora Correia/Porto Alto", "url": "https://www.net-empregos.com/15809222/ajudante-de-serralheiro-samora-correia-porto-alto/", "date": "6-8-2026", "category": "Industria FT Santarem", "nearest_city": "desconhecido", "distance_km": null}, {"ref": "15739705", "title": "Ajudante de carpintaria com experiência", "url": "https://www.net-empregos.com/15739705/ajudante-de-carpintaria-com-experiencia/", "date": "6-8-2026", "category": "Industria FT Santarem", "nearest_city": "desconhecido", "distance_km": null}, {"ref": "15738046", "title": "COORDENADOR/A DE PROCESSOS DE PRODUÇÃO - Ourém", "url": "https://www.net-empregos.com/15738046/coordenador-a-de-processos-de-producao-ourem/", "date": "6-8-2026", "category": "Industria FT Santarem", "nearest_city": "Ourém", "distance_km": 6.0}, {"ref": "15758882", "title": "Técnico/a de Qualidade M/F", "url": "https://www.net-empregos.com/15758882/tecnico-a-de-qualidade-m-f/", "date": "6-8-2026", "category": "Industria FT Santarem", "nearest_city": "desconhecido", "distance_km": null}, {"ref": "15792280", "title": "Serralheiro - Montalvo", "url": "https://www.net-empregos.com/15792280/serralheiro-montalvo/", "date": "6-8-2026", "category": "Industria FT Santarem", "nearest_city": "desconhecido", "distance_km": null}, {"ref": "15792288", "title": "Soldador TIG", "url": "https://www.net-empregos.com/15792288/soldador-tig/", "date": "6-8-2026", "category": "Industria FT Santarem", "nearest_city": "desconhecido", "distance_km": null}, {"ref": "15807211", "title": "Auxiliar de Produção Padaria - Noturno fixo - Entrada imediata", "url": "https://www.net-empregos.com/15807211/auxiliar-de-producao-padaria-noturno-fixo-entrada-imediata/", "date": "6-8-2026", "category": "Industria FT Santarem", "nearest_city": "desconhecido", "distance_km": null}, {"ref": "15772221", "title": "Auxiliar de Fabrico (M/F) - Turnos Fixos // Production Assistant (M/F) - Fixed Shifts", "url": "https://www.net-empregos.com/15772221/auxiliar-de-fabrico-m-f-turnos-fixos-production-assistant-m-f-fixed-shifts/", "date": "6-8-2026", "category": "Industria FT Santarem", "nearest_city": "desconhecido", "distance_km": null}, {"ref": "15759389", "title": "Estamos a contratar Serralheiros de Alumínio (m/f) com e sem experiência! Entrada imediata!", "url": "https://www.net-empregos.com/15759389/estamos-a-contratar-serralheiros-de-aluminio-m-f-com-e-sem-experiencia-entrada-imediata/", "date": "6-8-2026", "category": "Construcao FT Leiria", "nearest_city": "Leiria", "distance_km": 18.9}, {"ref": "15749603", "title": "Aprendiz de Carpinteiro e/ou Marceneiro (Full-Time)", "url": "https://www.net-empregos.com/15749603/aprendiz-de-carpinteiro-e-ou-marceneiro-full-time/", "date": "6-8-2026", "category": "Construcao FT Leiria", "nearest_city": "Leiria", "distance_km": 18.9}, {"ref": "15752510", "title": "Servente / Ajudante de Pedreiro", "url": "https://www.net-empregos.com/15752510/servente-ajudante-de-pedreiro/", "date": "6-8-2026", "category": "Construcao FT Leiria", "nearest_city": "Leiria", "distance_km": 18.9}, {"ref": "15814730", "title": "Gestor de stock", "url": "https://www.net-empregos.com/15814730/gestor-de-stock/", "date": "6-8-2026", "category": "Construcao FT Leiria", "nearest_city": "Leiria", "distance_km": 18.9}, {"ref": "15772857", "title": "Operador de maquinas ( Escavadoras, Retroescavadoras, cilindros, etc.)", "url": "https://www.net-empregos.com/15772857/operador-de-maquinas-escavadoras-retroescavadoras-cilindros-etc/", "date": "6-8-2026", "category": "Construcao FT Leiria", "nearest_city": "Leiria", "distance_km": 18.9}, {"ref": "15765156", "title": "Serralheiro de Alumínio – Produção (M/F)", "url": "https://www.net-empregos.com/15765156/serralheiro-de-aluminio-producao-m-f/", "date": "6-8-2026", "category": "Construcao FT Santarem", "nearest_city": "desconhecido", "distance_km": null}, {"ref": "15752458", "title": "Eletricista - AVAC & Solar", "url": "https://www.net-empregos.com/15752458/eletricista-avac-solar/", "date": "6-8-2026", "category": "Construcao FT Santarem", "nearest_city": "desconhecido", "distance_km": null}, {"ref": "15803896", "title": "Auxiliar de Montagem", "url": "https://www.net-empregos.com/15803896/auxiliar-de-montagem/", "date": "6-8-2026", "category": "Construcao FT Santarem", "nearest_city": "desconhecido", "distance_km": null}, {"ref": "15808864", "title": "DESENHADOR(A) TÉCNICO(A) - Ourém/ Leiria", "url": "https://www.net-empregos.com/15808864/desenhador-a-tecnico-a-ourem-leiria/", "date": "6-8-2026", "category": "Construcao FT Santarem", "nearest_city": "Ourém", "distance_km": 6.0}, {"ref": "15704371", "title": "Encarregado/a de Obra (m/f)", "url": "https://www.net-empregos.com/15704371/encarregado-a-de-obra-m-f/", "date": "6-8-2026", "category": "Construcao FT Santarem", "nearest_city": "desconhecido", "distance_km": null}, {"ref": "15819369", "title": "Assistente de produção", "url": "https://www.net-empregos.com/15819369/assistente-de-producao/", "date": "6-8-2026", "category": "Construcao FT Santarem", "nearest_city": "desconhecido", "distance_km": null}, {"ref": "15764904", "title": "Recrutamento: Técnico(a) de Construção Civil", "url": "https://www.net-empregos.com/15764904/recrutamento-tecnico-a-de-construcao-civil/", "date": "6-8-2026", "category": "Construcao FT Santarem", "nearest_city": "desconhecido", "distance_km": null}, {"ref": "15802518", "title": "Motorista Nacional C+E", "url": "https://www.net-empregos.com/15802518/motorista-nacional-c-e/", "date": "6-8-2026", "category": "Logistica Leiria", "nearest_city": "Leiria", "distance_km": 18.9}, {"ref": "15714876", "title": "Motorista de Ligeiro para Leiria", "url": "https://www.net-empregos.com/15714876/motorista-de-ligeiro-para-leiria/", "date": "6-8-2026", "category": "Logistica Leiria", "nearest_city": "Leiria", "distance_km": 18.9}, {"ref": "15439132", "title": "Operador de Expedição (M/F) c/ EMPILHADOR", "url": "https://www.net-empregos.com/15439132/operador-de-expedicao-m-f-c-empilhador/", "date": "6-8-2026", "category": "Logistica Leiria", "nearest_city": "Leiria", "distance_km": 18.9}, {"ref": "15807092", "title": "Candidatura — Fiel de Armazém", "url": "https://www.net-empregos.com/15807092/candidatura-fiel-de-armazem/", "date": "6-8-2026", "category": "Logistica Leiria", "nearest_city": "Leiria", "distance_km": 18.9}, {"ref": "15806195", "title": "Operador(a) de Estaleiro/Logística - ÓBIDOS", "url": "https://www.net-empregos.com/15806195/operador-a-de-estaleiro-logistica-obidos/", "date": "6-8-2026", "category": "Logistica Leiria", "nearest_city": "Leiria", "distance_km": 18.9}, {"ref": "15809023", "title": "Motorista de Pesados - Serviço Nacional (M/F/D)", "url": "https://www.net-empregos.com/15809023/motorista-de-pesados-servico-nacional-m-f-d/", "date": "6-8-2026", "category": "Logistica Leiria", "nearest_city": "Leiria", "distance_km": 18.9}, {"ref": "15814328", "title": "Ajudante Armazém- Filial Leiria", "url": "https://www.net-empregos.com/15814328/ajudante-armazem-filial-leiria/", "date": "6-8-2026", "category": "Logistica Leiria", "nearest_city": "Leiria", "distance_km": 18.9}, {"ref": "15815978", "title": "Técnico de Logística e Gestão de Dados", "url": "https://www.net-empregos.com/15815978/tecnico-de-logistica-e-gestao-de-dados/", "date": "6-8-2026", "category": "Logistica Leiria", "nearest_city": "Leiria", "distance_km": 18.9}, {"ref": "15757515", "title": "Motorista de Pesados Serviço Nacional - cisternas pulverulento", "url": "https://www.net-empregos.com/15757515/motorista-de-pesados-servico-nacional-cisternas-pulverulento/", "date": "6-8-2026", "category": "Logistica Leiria", "nearest_city": "Leiria", "distance_km": 18.9}, {"ref": "15788514", "title": "Motorista de Pesados (M/F) – Entrada Imediata", "url": "https://www.net-empregos.com/15788514/motorista-de-pesados-m-f-entrada-imediata/", "date": "6-8-2026", "category": "Logistica Leiria", "nearest_city": "Leiria", "distance_km": 18.9}, {"ref": "15700918", "title": "Motorista Ligeiros", "url": "https://www.net-empregos.com/15700918/motorista-ligeiros/", "date": "6-8-2026", "category": "Logistica Leiria", "nearest_city": "Leiria", "distance_km": 18.9}, {"ref": "15817916", "title": "Product Manager", "url": "https://www.net-empregos.com/15817916/product-manager/", "date": "6-8-2026", "category": "Comercial Leiria", "nearest_city": "Leiria", "distance_km": 18.9}, {"ref": "15705028", "title": "Desenvolvedor de B2B Marketplace Global", "url": "https://www.net-empregos.com/15705028/desenvolvedor-de-b2b-marketplace-global/", "date": "29-7-2026", "category": "Comercial Leiria", "nearest_city": "Leiria", "distance_km": 18.9}, {"ref": "15643069", "title": "Gestor(a) de Conta IT / Key Account Manager", "url": "https://www.net-empregos.com/15643069/gestor-a-de-conta-it-key-account-manager/", "date": "12-7-2026", "category": "Comercial Leiria", "nearest_city": "Leiria", "distance_km": 18.9}, {"ref": "15747576", "title": "Comercial - Venda de soluções de desenvolvimento de software e Inteligência Artificial", "url": "https://www.net-empregos.com/15747576/comercial-venda-de-solucoes-de-desenvolvimento-de-software-e-inteligencia-artificial/", "date": "6-8-2026", "category": "Comercial Leiria", "nearest_city": "Leiria", "distance_km": 18.9}, {"ref": "15764358", "title": "Sales Engineer / Consultor Pré-venda ERP (Cegid Primavera)", "url": "https://www.net-empregos.com/15764358/sales-engineer-consultor-pre-venda-erp-cegid-primavera/", "date": "3-8-2026", "category": "Comercial Leiria", "nearest_city": "Leiria", "distance_km": 18.9}, {"ref": "15783376", "title": "R&D Project Coordinator", "url": "https://www.net-empregos.com/15783376/r-d-project-coordinator/", "date": "5-8-2026", "category": "Comercial Leiria", "nearest_city": "Leiria", "distance_km": 18.9}, {"ref": "15809168", "title": "Project Manager - Corporate Events", "url": "https://www.net-empregos.com/15809168/project-manager-corporate-events/", "date": "5-8-2026", "category": "Comercial Leiria", "nearest_city": "Leiria", "distance_km": 18.9}, {"ref": "15658021", "title": "Colaborador Gestão Lojas Retalho", "url": "https://www.net-empregos.com/15658021/colaborador-gestao-lojas-retalho/", "date": "15-7-2026", "category": "Comercial Leiria", "nearest_city": "Leiria", "distance_km": 18.9}, {"ref": "15651807", "title": "Consultor de Tecnologia - Gestor de Conta", "url": "https://www.net-empregos.com/15651807/consultor-de-tecnologia-gestor-de-conta/", "date": "4-8-2026", "category": "Comercial Leiria", "nearest_city": "Leiria", "distance_km": 18.9}, {"ref": "15751574", "title": "Estágio IEFP de Consultor(a)/Técnico(a) ERP Primavera (Cegid) Júnior", "url": "https://www.net-empregos.com/15751574/estagio-iefp-de-consultor-a-tecnico-a-erp-primavera-cegid-junior/", "date": "3-8-2026", "category": "Comercial Leiria", "nearest_city": "Leiria", "distance_km": 18.9}]};</script>
+
+
+
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-left">
+      <div class="avatar">L</div>
+      <div>
+        <div class="title">Candidaturas — Lucca Rodrigues Gontijo</div>
+        <div class="subtitle">Fátima · Hoteleira · Indústria · Audiovisual · <span id="lastUpdated"></span></div>
+      </div>
+    </div>
+    <div class="header-right">
+      <button class="btn btn-secondary" onclick="exportData()">📥 Exportar JSON</button>
+      <button class="btn" onclick="openModal()">＋ Nova Candidatura</button>
+    </div>
+  </div>
+
+  <!-- TABS -->
+  <div class="tabs">
+    <div class="tab active" data-tab="applications" onclick="switchTab('applications')">
+      📋 Candidaturas <span class="badge" id="tab-badge-cands">0</span>
+    </div>
+    <div class="tab" data-tab="potentials" onclick="switchTab('potentials')">
+      🔍 Potenciais <span class="badge" id="tab-badge-pots">0</span>
+    </div>
+  </div>
+
+  <!-- ═══ TAB: CANDIDATURAS ═══ -->
+  <div id="tab-applications" class="tab-content active">
+
+    <div class="stats">
+      <div class="stat-card s-total">
+        <div class="stat-label">Total</div>
+        <div class="stat-value" id="stat-total">0</div>
+      </div>
+      <div class="stat-card s-draft">
+        <div class="stat-label">Rascunhos</div>
+        <div class="stat-value" id="stat-draft">0</div>
+      </div>
+      <div class="stat-card s-sent">
+        <div class="stat-label">Enviadas</div>
+        <div class="stat-value" id="stat-sent">0</div>
+      </div>
+      <div class="stat-card s-interview">
+        <div class="stat-label">Em entrevista</div>
+        <div class="stat-value" id="stat-interview">0</div>
+      </div>
+      <div class="stat-card s-offer">
+        <div class="stat-label">Ofertas</div>
+        <div class="stat-value" id="stat-offer">0</div>
+      </div>
+      <div class="stat-card s-rejected">
+        <div class="stat-label">Recusadas</div>
+        <div class="stat-value" id="stat-rejected">0</div>
+      </div>
+    </div>
+
+    <div class="filter-bar">
+      <input type="text" class="search-input" id="searchInput" placeholder="🔍 Procurar empresa, função, localização..." oninput="renderApplications()">
+      <select class="filter-select" id="filterStatus" onchange="renderApplications()">
+        <option value="">Todos os estados</option>
+        <option value="rascunho">Rascunho</option>
+        <option value="enviado">Enviado</option>
+        <option value="visualizado">Visualizado</option>
+        <option value="entrevista">Em entrevista</option>
+        <option value="oferta">Oferta</option>
+        <option value="recusado">Recusado</option>
+        <option value="fechado">Fechado</option>
+      </select>
+      <select class="filter-select" id="filterCV" onchange="renderApplications()">
+        <option value="">Todos os CVs</option>
+        <option value="audiovisual">CV Audiovisual</option>
+        <option value="geral">CV Geral</option>
+      </select>
+    </div>
+
+    <div class="table-container">
+      <div class="table-header">
+        <div class="table-title">📋 Lista de Candidaturas</div>
+        <div style="font-size:12px; color:var(--gray-500);"><span id="filteredCount">0</span> visíveis</div>
+      </div>
+      <div id="applicationsTable"></div>
+    </div>
+  </div>
+
+  <!-- ═══ TAB: POTENCIAIS ═══ -->
+  <div id="tab-potentials" class="tab-content">
+
+    <div class="stats">
+      <div class="stat-card s-novo">
+        <div class="stat-label">Total (raio 20km)</div>
+        <div class="stat-value" id="stat-pot-total">0</div>
+        <div class="stat-sub">≥ 1-Jul-2026</div>
+      </div>
+      <div class="stat-card s-novo">
+        <div class="stat-label">Em Fátima (≤5km)</div>
+        <div class="stat-value" id="stat-pot-5km">0</div>
+        <div class="stat-sub">perto de casa</div>
+      </div>
+      <div class="stat-card s-draft">
+        <div class="stat-label">Restaur. PT</div>
+        <div class="stat-value" id="stat-pot-rest">0</div>
+      </div>
+      <div class="stat-card s-offer">
+        <div class="stat-label">Industrial FT</div>
+        <div class="stat-value" id="stat-pot-ind">0</div>
+      </div>
+      <div class="stat-card s-interview">
+        <div class="stat-label">Audiovisual</div>
+        <div class="stat-value" id="stat-pot-av">0</div>
+      </div>
+      <div class="stat-card s-novo">
+        <div class="stat-label">Esta semana</div>
+        <div class="stat-value" id="stat-pot-week">0</div>
+      </div>
+    </div>
+
+    <div class="filter-bar">
+      <input type="text" class="search-input" id="potSearch" placeholder="🔍 Procurar título, ref..." oninput="renderPotentials()">
+      <select class="filter-select" id="potCat" onchange="renderPotentials()">
+        <option value="">Todas as categorias</option>
+        <option value="restauracao">Restauração/atendimento</option>
+        <option value="industrial">Industrial/fábrica</option>
+        <option value="audiovisual">Audiovisual</option>
+        <option value="geral">Comercial/vendas</option>
+        <option value="outros">Outros</option>
+      </select>
+      <select class="filter-select" id="potZone" onchange="renderPotentials()">
+        <option value="">Todas as zonas</option>
+        <option value="Leiria">Leiria</option>
+        <option value="Santarém">Santarém</option>
+        <option value="Todas">Todas as zonas</option>
+      </select>
+      <select class="filter-select" id="potDate" onchange="renderPotentials()">
+        <option value="">Qualquer data</option>
+        <option value="6-8-2026">Hoje/ontem</option>
+        <option value="5-8-2026">Há 2 dias</option>
+        <option value="4-8-2026">Há 3 dias</option>
+        <option value="week">Esta semana</option>
+        <option value="july">Julho</option>
+      </select>
+      <select class="filter-select" id="potDist" onchange="renderPotentials()">
+        <option value="">Distância: qualquer</option>
+        <option value="5">≤ 5 km (Fátima)</option>
+        <option value="10">≤ 10 km</option>
+        <option value="15">≤ 15 km</option>
+        <option value="20">≤ 20 km (raio máximo)</option>
+      </select>
+    </div>
+
+    <div class="table-container">
+      <div class="table-header">
+        <div class="table-title">🔍 Vagas recentes para considerar</div>
+        <div style="font-size:12px; color:var(--gray-500);"><span id="potFilteredCount">0</span> de <span id="potTotalCount">0</span></div>
+      </div>
+      <div id="potentialsTable"></div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    💾 Dados: <code>~/Documents/Candidaturas/</code> · Actualizado <span id="footerTime"></span>
+  </div>
+
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title" id="modalTitle">Nova Candidatura</div>
+      <button class="icon-btn" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <form id="applicationForm" onsubmit="return saveApplication(event)">
+        <input type="hidden" id="appId">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Empresa *</label>
+            <input class="form-input" id="company" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Localização</label>
+            <input class="form-input" id="location">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Função *</label>
+            <input class="form-input" id="role" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">CV</label>
+            <select class="form-select" id="cvUsed">
+              <option value="geral">CV Geral</option>
+              <option value="audiovisual">CV Audiovisual</option>
+              <option value="nenhum">Nenhum</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Estado *</label>
+            <select class="form-select" id="status" required>
+              <option value="rascunho">Rascunho</option>
+              <option value="enviado" selected>Enviado</option>
+              <option value="visualizado">Visualizado</option>
+              <option value="entrevista">Em entrevista</option>
+              <option value="oferta">Oferta</option>
+              <option value="recusado">Recusado</option>
+              <option value="fechado">Fechado</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Data de envio</label>
+            <input class="form-input" id="sentDate" type="date">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Link da oferta</label>
+          <input class="form-input" id="link" type="url">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Contacto (email/telefone)</label>
+          <input class="form-input" id="contact">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Notas / Próximos passos</label>
+          <textarea class="form-textarea" id="notes"></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Mensagem de candidatura (rascunho)</label>
+          <textarea class="form-textarea" id="messageDraft" rows="6"></textarea>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal()">Cancelar</button>
+      <button class="btn" onclick="document.getElementById('applicationForm').requestSubmit()">Guardar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const STORAGE_KEY = 'lucca_candidaturas_v1';
+let candidates = [];
+let potentials = [];
+let currentEditingId = null;
+
+function updateFooter() {
+  const t = new Date().toLocaleString('pt-PT', { dateStyle: 'short', timeStyle: 'short' });
+  document.getElementById('footerTime').textContent = t;
+  document.getElementById('lastUpdated').textContent = '· última actualização ' + t;
+}
+
+function load() {
+  if (window.__EMBEDDED_DATA__) {
+    candidates = window.__EMBEDDED_DATA__.candidates || [];
+    potentials = window.__EMBEDDED_DATA__.potentials || [];
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({candidates, potentials}));
+    return;
+  }
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try {
+      const d = JSON.parse(raw);
+      candidates = d.candidates || [];
+      potentials = d.potentials || [];
+    } catch(e) {}
+  }
+}
+
+function save() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify({candidates, potentials}));
+  updateFooter();
+}
+
+// ═══ TABS ═══
+function switchTab(tab) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === tab));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.toggle('active', c.id === 'tab-' + tab));
+  if (tab === 'potentials') renderPotentials();
+}
+
+// ═══ APPLICATIONS ═══
+function updateAppStats() {
+  const total = candidates.length;
+  const draft = candidates.filter(a => a.status === 'rascunho').length;
+  const sent = candidates.filter(a => a.status === 'enviado').length;
+  const interview = candidates.filter(a => a.status === 'entrevista').length;
+  const offer = candidates.filter(a => a.status === 'oferta').length;
+  const rejected = candidates.filter(a => ['recusado','fechado'].includes(a.status)).length;
+  document.getElementById('stat-total').textContent = total;
+  document.getElementById('stat-draft').textContent = draft;
+  document.getElementById('stat-sent').textContent = sent;
+  document.getElementById('stat-interview').textContent = interview;
+  document.getElementById('stat-offer').textContent = offer;
+  document.getElementById('stat-rejected').textContent = rejected;
+  document.getElementById('tab-badge-cands').textContent = total;
+}
+
+const STATUS_LABELS = {
+  rascunho: 'Rascunho', enviado: 'Enviado', visualizado: 'Visualizado',
+  entrevista: 'Entrevista', oferta: 'Oferta', recusado: 'Recusado', fechado: 'Fechado',
+  potencial: 'Potencial'
+};
+const STATUS_CLASS = {
+  rascunho: 'status-rascunho', enviado: 'status-enviado', visualizado: 'status-visualizado',
+  entrevista: 'status-entrevista', oferta: 'status-oferta', recusado: 'status-recusado',
+  fechado: 'status-fechado', potencial: 'status-potencial'
+};
+
+function renderApplications() {
+  const search = document.getElementById('searchInput').value.toLowerCase();
+  const filterStatus = document.getElementById('filterStatus').value;
+  const filterCV = document.getElementById('filterCV').value;
+
+  const filtered = candidates.filter(a => {
+    if (filterStatus && a.status !== filterStatus) return false;
+    if (filterCV && a.cvUsed !== filterCV) return false;
+    if (search) {
+      const haystack = [a.company, a.role, a.location, a.notes, a.contact].join(' ').toLowerCase();
+      if (!haystack.includes(search)) return false;
+    }
+    return true;
+  });
+
+  filtered.sort((a, b) => (b.sentDate || '').localeCompare(a.sentDate || ''));
+  document.getElementById('filteredCount').textContent = filtered.length;
+
+  if (filtered.length === 0) {
+    document.getElementById('applicationsTable').innerHTML = `
+      <div class="empty-state">
+        <div class="empty-state-icon">${candidates.length === 0 ? '📭' : '🔍'}</div>
+        <div class="empty-state-title">${candidates.length === 0 ? 'Ainda sem candidaturas' : 'Nenhum resultado'}</div>
+        <div class="empty-state-text">${candidates.length === 0 ? 'Clica em "+ Nova Candidatura" para começar.' : 'Ajusta os filtros acima.'}</div>
+      </div>`;
+    return;
+  }
+
+  const rows = filtered.map(a => `
+    <tr>
+      <td>
+        <div class="title-cell">${escapeHtml(a.company)}<small>${escapeHtml(a.role)}</small></div>
+      </td>
+      <td>
+        <div class="cat-cell">${escapeHtml(a.location || '—')}</div>
+        <div class="contact-cell ${a.contact && !a.contact.includes('login') ? 'revealed' : ''}">${escapeHtml(a.contact || '—')}</div>
+      </td>
+      <td><span class="cv-badge cv-${a.cvUsed}">${a.cvUsed === 'audiovisual' ? 'AV' : a.cvUsed === 'geral' ? 'Geral' : '—'}</span></td>
+      <td><span class="status ${STATUS_CLASS[a.status]}">${STATUS_LABELS[a.status]}</span></td>
+      <td class="date-cell">${formatDate(a.sentDate)}</td>
+      <td class="notes-cell" title="${escapeHtml(a.notes || '')}">${escapeHtml(a.notes || '—')}</td>
+      <td class="link-cell">${a.link ? `<a href="${escapeHtml(a.link)}" target="_blank">Ver ↗</a>` : '—'}</td>
+      <td class="actions">
+        <button class="icon-btn" onclick="editApplication('${a.id}')" title="Editar">✏️</button>
+        <button class="icon-btn icon-btn-success" onclick="markSent('${a.id}')" title="Marcar como Enviado">📤</button>
+        <button class="icon-btn icon-btn-danger" onclick="deleteApplication('${a.id}')" title="Apagar">🗑️</button>
+      </td>
+    </tr>
+  `).join('');
+
+  document.getElementById('applicationsTable').innerHTML = `
+    <table>
+      <thead>
+        <tr>
+          <th>Empresa / Função</th>
+          <th>Local / Contacto</th>
+          <th>CV</th>
+          <th>Estado</th>
+          <th>Data</th>
+          <th>Notas</th>
+          <th>Link</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>${rows}</tbody>
+    </table>
+  `;
+}
+
+// ═══ POTENTIALS ═══
+function updatePotStats() {
+  document.getElementById('stat-pot-total').textContent = potentials.length;
+  document.getElementById('tab-badge-pots').textContent = potentials.length;
+  const within5 = potentials.filter(p => p.distance_km != null && p.distance_km <= 5).length;
+  document.getElementById('stat-pot-5km').textContent = within5;
+
+  const byCat = {};
+  potentials.forEach(p => (p.categories || []).forEach(c => byCat[c] = (byCat[c] || 0) + 1));
+  document.getElementById('stat-pot-rest').textContent = byCat.restauracao || 0;
+  document.getElementById('stat-pot-ind').textContent = byCat.industrial || 0;
+  document.getElementById('stat-pot-av').textContent = byCat.audiovisual || 0;
+
+  // Esta semana (últimos 7 dias)
+  const now = new Date(2026, 7, 6); // Aug 6, 2026 (memory context)
+  const oneWeek = new Date(now.getTime() - 7 * 86400000);
+  const weekCount = potentials.filter(p => {
+    const d = parseDate(p.date);
+    return d && d >= oneWeek;
+  }).length;
+  document.getElementById('stat-pot-week').textContent = weekCount;
+}
+
+function parseDate(d) {
+  if (!d || d === 'unknown') return null;
+  const m = d.match(/(\d{1,2})-(\d{1,2})-(\d{4})/);
+  if (!m) return null;
+  return new Date(parseInt(m[3]), parseInt(m[2]) - 1, parseInt(m[1]));
+}
+
+function dateKey(d) {
+  const dt = parseDate(d);
+  if (!dt) return 0;
+  return dt.getFullYear() * 10000 + dt.getMonth() * 100 + dt.getDate();
+}
+
+function dateAge(d) {
+  const today = new Date(2026, 7, 6);
+  const parsed = parseDate(d);
+  if (!parsed) return 'old';
+  const days = Math.floor((today - parsed) / 86400000);
+  if (days <= 1) return 'fresh';
+  if (days <= 7) return 'week';
+  return 'old';
+}
+
+function renderPotentials() {
+  const search = document.getElementById('potSearch').value.toLowerCase();
+  const filterCat = document.getElementById('potCat').value;
+  const filterZone = document.getElementById('potZone').value;
+  const filterDate = document.getElementById('potDate').value;
+  const filterDist = document.getElementById('potDist').value;
+
+  const filtered = potentials.filter(p => {
+    if (search) {
+      const haystack = [p.title, p.ref, p.category, p.url].join(' ').toLowerCase();
+      if (!haystack.includes(search)) return false;
+    }
+    if (filterCat) {
+      if (!(p.categories || []).includes(filterCat)) return false;
+    }
+    if (filterZone) {
+      if (!p.category.includes(filterZone)) return false;
+    }
+    if (filterDate) {
+      const age = dateAge(p.date);
+      const month = (parseDate(p.date) || {}).getMonth?.();
+      if (filterDate === 'week' && age === 'old') return false;
+      if (['6-8-2026','5-8-2026','4-8-2026'].includes(filterDate) && p.date !== filterDate) return false;
+      if (filterDate === 'july' && month !== 6) return false;
+    }
+    if (filterDist) {
+      const maxKm = parseFloat(filterDist);
+      if (p.distance_km == null || p.distance_km > maxKm) return false;
+    }
+    return true;
+  });
+
+  filtered.sort((a, b) => {
+    const da = dateKey(a.date);
+    const db = dateKey(b.date);
+    if (db !== da) return db - da; // Newest first
+    // Tiebreak: closer to Fátima
+    return (a.distance_km || 999) - (b.distance_km || 999);
+  });
+  document.getElementById('potFilteredCount').textContent = filtered.length;
+  document.getElementById('potTotalCount').textContent = potentials.length;
+
+  if (filtered.length === 0) {
+    document.getElementById('potentialsTable').innerHTML = `
+      <div class="empty-state">
+        <div class="empty-state-icon">🔍</div>
+        <div class="empty-state-title">Nenhum potencial com esses filtros</div>
+        <div class="empty-state-text">Ajusta os filtros para ver mais vagas.</div>
+      </div>`;
+    return;
+  }
+
+  const rows = filtered.map(p => {
+    const age = dateAge(p.date);
+    const cats = (p.categories || []).filter(c => c !== 'outros').map(c =>
+      `<span class="cat-tag c-${c}">${c === 'restauracao' ? 'Rest.' : c.charAt(0).toUpperCase() + c.slice(1)}</span>`
+    ).join('');
+    const dist = p.distance_km != null ? p.distance_km : null;
+    const distLabel = dist != null ? `<strong>${dist}km</strong><br><small>${escapeHtml(p.nearest_city || '')}</small>` : '<span style="color:#94a3b8">?</span>';
+    return `
+    <tr>
+      <td>
+        <div class="title-cell">${escapeHtml(p.title)}<small>Ref ${p.ref} · ${escapeHtml(p.category)}</small></div>
+      </td>
+      <td class="dist-cell">${distLabel}</td>
+      <td><div class="cat-cell">${cats || '<span class="cat-tag c-outros">?</span>'}</div></td>
+      <td class="date-cell ${age}">${escapeHtml(p.date)}</td>
+      <td class="contact-cell">
+        ${p.email ? `<span class="revealed">${escapeHtml(p.email)}</span>` : '<span style="color:#94a3b8">clica para ver →</span>'}
+      </td>
+      <td class="link-cell"><a href="${escapeHtml(p.url)}" target="_blank">Ver ↗</a></td>
+      <td class="actions">
+        <button class="icon-btn icon-btn-success" onclick="convertToCandidate('${p.ref}')" title="Criar candidatura a partir desta vaga">＋</button>
+        <button class="icon-btn" onclick="copyLink('${p.ref}')" title="Copiar link">🔗</button>
+        <button class="icon-btn icon-btn-danger" onclick="dismissPotential('${p.ref}')" title="Descartar">✕</button>
+      </td>
+    </tr>`;
+  }).join('');
+
+  document.getElementById('potentialsTable').innerHTML = `
+    <table>
+      <thead>
+        <tr>
+          <th>Título / Categoria</th>
+          <th>Distância</th>
+          <th>Tags</th>
+          <th>Publicada</th>
+          <th>Contacto</th>
+          <th>Oferta</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>${rows}</tbody>
+    </table>
+  `;
+}
+
+// ═══ POTENTIAL DETAILS ═══
+async function togglePotDetails(ref) {
+  const el = document.getElementById('pot-details-' + ref);
+  const row = document.querySelector(`tr.pot-row[data-ref="${ref}"]`);
+  const chevron = row?.querySelector('.pot-chevron');
+  if (el.style.display === 'none') {
+    el.style.display = 'block';
+    if (chevron) chevron.textContent = '▾';
+    // Auto-load if not loaded yet
+    const desc = document.getElementById('pot-desc-' + ref);
+    if (desc && desc.textContent.includes('Clica "Carregar detalhes"')) {
+      loadPotDetails(ref);
+    }
+  } else {
+    el.style.display = 'none';
+    if (chevron) chevron.textContent = '▸';
+  }
+}
+
+async function loadPotDetails(ref) {
+  const p = potentials.find(x => x.ref === ref);
+  if (!p) return;
+  const descEl = document.getElementById('pot-desc-' + ref);
+  if (!descEl) return;
+  
+  // Mark as loading
+  descEl.innerHTML = '<em style="color:#94a3b8">A carregar detalhes da oferta...</em>';
+  
+  // Try to fetch via /tmp/cv-build/pot_details.json (pre-computed) or call agent
+  // For now, ask user to wait — agent will run fetch in background
+  descEl.innerHTML = '<em style="color:#2563eb">⚠️ Pede ao agente para carregar detalhes desta oferta (diz: "carrega detalhes de ${ref}")</em>';
+  // Store marker so we know it needs fetching
+  p.needs_details = true;
+  save();
+}
+
+// Reveal email by calling the Net-Empregos endpoint
+async function revealEmail(ref) {
+  const p = potentials.find(x => x.ref === ref);
+  if (!p || !p.url) return;
+  // Find the email cell
+  const row = document.querySelector(`tr.pot-row[data-ref="${ref}"]`);
+  if (!row) return;
+  
+  // Try to find the email via API call (we need server-side scraping)
+  // For now, show instructions
+  const cell = row.querySelector('.contact-cell, .pot-section-content');
+  if (cell) {
+    cell.innerHTML = '<em style="color:#94a3b8">A extrair email...</em>';
+  }
+  // Mark as requested
+  p.needs_email = true;
+  save();
+  
+  // Show message that agent needs to run extraction
+  setTimeout(() => {
+    if (cell) {
+      cell.innerHTML = '<em style="color:#2563eb">⚠️ Pede ao agente para extrair o email de ' + ref + ' (diz: "extrai email de ' + ref + '")</em>';
+    }
+  }, 500);
+}
+
+// ═══ ACTIONS ═══
+function convertToCandidate(ref) {
+  const p = potentials.find(x => x.ref === ref);
+  if (!p) return;
+  if (!confirm(`Criar candidatura para:\n\n"${p.title}"\n\nVou abrir o editor com os dados pré-preenchidos.`)) return;
+  candidates.push({
+    id: Date.now().toString(),
+    company: extractCompany(p.title),
+    role: p.title,
+    location: extractLocation(p.title) || 'Fátima/Leiria',
+    cvUsed: p.categories.includes('audiovisual') ? 'audiovisual' : 'geral',
+    status: 'rascunho',
+    sentDate: null,
+    link: p.url,
+    contact: p.email || '(email ainda não extraído)',
+    notes: `Extraída de Potenciais (${p.date}). Categoria: ${p.categories.join(', ')}.`,
+    messageDraft: generateDraft(p),
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString()
+  });
+  // Remove from potentials
+  potentials = potentials.filter(x => x.ref !== ref);
+  save();
+  updateAppStats();
+  updatePotStats();
+  renderApplications();
+  renderPotentials();
+  switchTab('applications');
+}
+
+function extractCompany(title) {
+  // Crude extraction
+  const parts = title.split(' - ');
+  return parts[parts.length - 1].trim();
+}
+
+function extractLocation(title) {
+  const m = title.match(/\(([^)]+)\)/);
+  return m ? m[1] : null;
+}
+
+function generateDraft(p) {
+  return `Exmo(a) Sr(a),\n\nVenho por este meio candidatar-me à vaga publicada no Net-Empregos (Ref. ${p.ref}).\n\nTenho experiência relevante na área e disponibilidade imediata. Junto envio o meu currículo para apreciação.\n\nAgradeço desde já a atenção e fico ao dispor para uma entrevista.\n\nCom os melhores cumprimentos,\nLucca Rodrigues Gontijo\n+351 915 136 439 · gontijolucca@gmail.com`;
+}
+
+function copyLink(ref) {
+  const p = potentials.find(x => x.ref === ref);
+  if (!p) return;
+  navigator.clipboard.writeText(p.url).then(() => {
+    alert('Link copiado!');
+  });
+}
+
+function dismissPotential(ref) {
+  if (!confirm('Descartar esta vaga?')) return;
+  potentials = potentials.filter(x => x.ref !== ref);
+  save();
+  updatePotStats();
+  renderPotentials();
+}
+
+function editApplication(id) {
+  const a = candidates.find(x => x.id === id);
+  if (!a) return;
+  currentEditingId = id;
+  document.getElementById('modalTitle').textContent = 'Editar Candidatura';
+  document.getElementById('appId').value = a.id;
+  document.getElementById('company').value = a.company || '';
+  document.getElementById('location').value = a.location || '';
+  document.getElementById('role').value = a.role || '';
+  document.getElementById('cvUsed').value = a.cvUsed || 'geral';
+  document.getElementById('status').value = a.status || 'enviado';
+  document.getElementById('sentDate').value = a.sentDate || '';
+  document.getElementById('link').value = a.link || '';
+  document.getElementById('contact').value = a.contact || '';
+  document.getElementById('notes').value = a.notes || '';
+  document.getElementById('messageDraft').value = a.messageDraft || '';
+  document.getElementById('modalOverlay').classList.add('active');
+}
+
+function deleteApplication(id) {
+  if (!confirm('Apagar esta candidatura?')) return;
+  candidates = candidates.filter(a => a.id !== id);
+  save();
+  updateAppStats();
+  renderApplications();
+}
+
+function markSent(id) {
+  const a = candidates.find(x => x.id === id);
+  if (!a) return;
+  a.status = 'enviado';
+  a.sentDate = new Date().toISOString().slice(0,10);
+  a.updatedAt = new Date().toISOString();
+  save();
+  updateAppStats();
+  renderApplications();
+}
+
+function saveApplication(e) {
+  e.preventDefault();
+  const id = document.getElementById('appId').value || Date.now().toString();
+  const data = {
+    id,
+    company: document.getElementById('company').value.trim(),
+    location: document.getElementById('location').value.trim(),
+    role: document.getElementById('role').value.trim(),
+    cvUsed: document.getElementById('cvUsed').value,
+    status: document.getElementById('status').value,
+    sentDate: document.getElementById('sentDate').value,
+    link: document.getElementById('link').value.trim(),
+    contact: document.getElementById('contact').value.trim(),
+    notes: document.getElementById('notes').value.trim(),
+    messageDraft: document.getElementById('messageDraft').value.trim(),
+    updatedAt: new Date().toISOString(),
+  };
+  if (currentEditingId) {
+    const idx = candidates.findIndex(a => a.id === id);
+    if (idx >= 0) candidates[idx] = { ...candidates[idx], ...data };
+  } else {
+    data.createdAt = new Date().toISOString();
+    candidates.push(data);
+  }
+  save();
+  updateAppStats();
+  renderApplications();
+  closeModal();
+  return false;
+}
+
+function openModal() {
+  currentEditingId = null;
+  document.getElementById('modalTitle').textContent = 'Nova Candidatura';
+  document.getElementById('applicationForm').reset();
+  document.getElementById('appId').value = '';
+  document.getElementById('sentDate').value = new Date().toISOString().slice(0,10);
+  document.getElementById('status').value = 'enviado';
+  document.getElementById('cvUsed').value = 'geral';
+  document.getElementById('modalOverlay').classList.add('active');
+  setTimeout(() => document.getElementById('company').focus(), 100);
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('active');
+}
+
+// ═══ EXPORT / UTILS ═══
+function exportData() {
+  const blob = new Blob([JSON.stringify({candidates, potentials}, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `candidaturas-${new Date().toISOString().slice(0,10)}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function formatDate(d) {
+  if (!d) return '—';
+  try { return new Date(d).toLocaleDateString('pt-PT', { day: '2-digit', month: 'short', year: 'numeric' }); }
+  catch(e) { return d; }
+}
+
+function escapeHtml(s) {
+  if (!s) return '';
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+// ═══ INIT ═══
+load();
+updateAppStats();
+updatePotStats();
+renderApplications();
+updateFooter();
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+</script>
+</body>
+</html>
